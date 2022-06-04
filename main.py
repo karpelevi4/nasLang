@@ -9,13 +9,13 @@ code1 = ["a = ( 6 + 7 * ( 6 - 5 ) - 2 ) * 2 - 20 ; ",
          "IF ( 40 > b ) { PRINT ( b ) ; } ;",
          "PRINT ( b ) ;",
          ]
-code2 = ["LinkedList link_list = { 1 , 3 , 4 } ;",
-         "link_list .insertAtEnd ( 2 ) ;",
-         "link_list .insertAtHead ( 1 ) ;",
-         "link_list .delete ( 2 ) ;",
-         "link_list .deleteAtHead ( ) ;",
-         "link_list .search ( 2 ) ;",
-         "link_list .isEmpty ( ) ;"
+code2 = ["LinkedList new_LL = { 1 , 3 , 4 } ;",
+         "new_LL .insertAtEnd ( 2 ) ;",
+         "new_LL .insertAtHead ( 1 ) ;",
+         "new_LL .delete ( 2 ) ;",
+         "new_LL .deleteAtHead ( ) ;",
+         "new_LL .search ( 2 ) ;",
+         "new_LL .isEmpty ( ) ;"
         ]
 
 
@@ -37,7 +37,7 @@ def main():
     # code = get_code()  
 
     # поиск лексем
-    lexer = LEXER(code1)  
+    lexer = LEXER(code2)  
 
     # показать строки кода
     # print(code)  

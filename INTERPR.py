@@ -239,7 +239,7 @@ class INTERPR:
                 values = self.linkedlist_values[name_variable]
                 result = values.pop(int(value))
                 self.linkedlist_values[name_variable] = values
-                print(f"Element is deleted: {result}")
+                print(f"Элемент удален: {result}")
             else:
                 print("ERROR")
 
@@ -249,7 +249,7 @@ class INTERPR:
                 values = self.linkedlist_values[name_variable]
                 result = values.pop(0)
                 self.linkedlist_values[name_variable] = values
-                print(f"Element is deleted: {result}")
+                print(f"Элемент удален: {result}")
             else:
                 print("ERROR")
 
@@ -260,7 +260,7 @@ class INTERPR:
             value = value.getValue()
             if name_variable in self.linkedlist_values:
                 values = self.linkedlist_values[name_variable]
-                print(f"Element on position {value}: {values[int(value)]}")
+                print(f"Элемент на позиции {value}: {values[int(value)]}")
             else:
                 print("ERROR")
 
@@ -269,9 +269,9 @@ class INTERPR:
             if name_variable in self.linkedlist_values:
                 values = self.linkedlist_values[name_variable]
                 if len(values) == 0:
-                    print("LinkedList is empty.")
+                    print("LinkedList пуст.")
                 else:
-                    print("LinkedList is NOT empty.")
+                    print("LinkedList не пуст.")
             else:
                 print("ERROR")
 
