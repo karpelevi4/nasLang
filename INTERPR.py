@@ -1,6 +1,6 @@
 from LEXER import LEXER
 from PARSER import PARSER
-
+import LL
 
 class INTERPR:
 
@@ -198,10 +198,21 @@ class INTERPR:
         return value
 
     def executeLinkedList(self, node):
+        linkedlist_count = 0
+
         name = node.getName()
         values = node.getValues()
         new_values = [elem.getValue() for elem in values]
-        self.linkedlist_values[name] = new_values
+
+        new_linked_list = LL.createLinkedList(new_values[0])
+        linkedlist_count += 1
+        for elem in new_values[1:]:
+            LL.addElement(new_linked_list, elem)
+            linkedlist_count += 1
+        # value = {"values": new_linked_list, "count": }
+        self.linkedlist_values[name] = new_linked_list
+
+        # self.linkedlist_values[name] = new_values
 
     def executeLinkedListOperation(self, node):
         type_operation = node.getTypeOperation()
@@ -209,12 +220,16 @@ class INTERPR:
         if type_operation == "setLLInsertAtEnd":
             name_variable = node.getNameVariable()
             value = node.getValues()
-            value_type = value.getTypeToken()
+            # value_type = value.getTypeToken()
             value = value.getValue()
             if name_variable in self.linkedlist_values:
-                values = self.linkedlist_values[name_variable]
-                values.append(value)
-                self.linkedlist_values[name_variable] = values
+                linked_list = self.linkedlist_values[name_variable]
+                LL.addElement(linked_list, value)
+                self.linkedlist_values[name_variable] = linked_list
+
+                # values = self.linkedlist_values[name_variable]
+                # values.append(value)
+                # self.linkedlist_values[name_variable] = values
             else:
                 print("ERROR")
 
@@ -224,9 +239,12 @@ class INTERPR:
             value_type = value.getTypeToken()
             value = value.getValue()
             if name_variable in self.linkedlist_values:
-                values = self.linkedlist_values[name_variable]
-                values = [value] + values
-                self.linkedlist_values[name_variable] = values
+                linked_list = self.linkedlist_values[name_variable]
+                LL.insertElement(linked_list, value, 0)
+                self.linkedlist_values[name_variable] = linked_list
+                # values = self.linkedlist_values[name_variable]
+                # values = [value] + values
+                # self.linkedlist_values[name_variable] = values
             else:
                 print("ERROR")
 
@@ -236,9 +254,13 @@ class INTERPR:
             value_type = value.getTypeToken()
             value = value.getValue()
             if name_variable in self.linkedlist_values:
-                values = self.linkedlist_values[name_variable]
-                result = values.pop(int(value))
-                self.linkedlist_values[name_variable] = values
+                linked_list = self.linkedlist_values[name_variable]
+                result = LL.deleteElement(linked_list, int(value))
+                self.linkedlist_values[name_variable] = linked_list
+
+                # values = self.linkedlist_values[name_variable]
+                # result = values.pop(int(value))
+                # self.linkedlist_values[name_variable] = values
                 print(f"Элемент удален: {result}")
             else:
                 print("ERROR")
@@ -246,9 +268,14 @@ class INTERPR:
         elif type_operation == "setLLDeleteAtHead":
             name_variable = node.getNameVariable()
             if name_variable in self.linkedlist_values:
-                values = self.linkedlist_values[name_variable]
-                result = values.pop(0)
-                self.linkedlist_values[name_variable] = values
+                linked_list = self.linkedlist_values[name_variable]
+                result = LL.deleteElement(linked_list, 0)
+
+                self.linkedlist_values[name_variable] = linked_list
+
+                # values = self.linkedlist_values[name_variable]
+                # result = values.pop(0)
+                # self.linkedlist_values[name_variable] = values
                 print(f"Элемент удален: {result}")
             else:
                 print("ERROR")
@@ -259,19 +286,25 @@ class INTERPR:
             value_type = value.getTypeToken()
             value = value.getValue()
             if name_variable in self.linkedlist_values:
+                linked_list = self.linkedlist_values[name_variable]
+                result = LL.foundElementIndex(linked_list, int(value))
+
                 values = self.linkedlist_values[name_variable]
-                print(f"Элемент на позиции {value}: {values[int(value)]}")
+                print(f"Элемент на позиции {value}: {result}")
             else:
                 print("ERROR")
 
         elif type_operation == "setLLIsEmpty":
             name_variable = node.getNameVariable()
             if name_variable in self.linkedlist_values:
-                values = self.linkedlist_values[name_variable]
-                if len(values) == 0:
-                    print("LinkedList пуст.")
+                linked_list = self.linkedlist_values[name_variable]
+                result = LL.isEmpty(linked_list)
+
+                # values = self.linkedlist_values[name_variable]
+                if result:
+                    print("Связанный список пуст.")
                 else:
-                    print("LinkedList не пуст.")
+                    print("Связанный список не пуст.")
             else:
                 print("ERROR")
 

@@ -9,12 +9,12 @@ code1 = ["a = ( 6 + 7 * ( 6 - 5 ) - 2 ) * 2 - 20 ; ",
          "IF ( 40 > b ) { PRINT ( b ) ; } ;",
          "PRINT ( b ) ;",
          ]
-code2 = ["LinkedList new_LL = { 1 , 3 , 4 } ;",
+code2 = ["LinkedList new_LL = { 5 , -1 , 6 } ;",
          "new_LL .insertAtEnd ( 2 ) ;",
-         "new_LL .insertAtHead ( 1 ) ;",
+         "new_LL .insertAtHead ( 99 ) ;",
          "new_LL .delete ( 2 ) ;",
          "new_LL .deleteAtHead ( ) ;",
-         "new_LL .search ( 2 ) ;",
+         "new_LL .search ( 0 ) ;",
          "new_LL .isEmpty ( ) ;"
         ]
 
